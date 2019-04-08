@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+// const webpack = require('webpack')
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -23,13 +23,28 @@ module.exports = {
       },
       {
         test: /\.vue/,
-        use: {
-          loader: 'vue-loader'
-        }
+        use: ['vue-loader']
       },
       {
         test: /\.scss/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10
+            }
+          },
+          // {
+            // loader: 'file-loader',
+            // options: {
+            //   publicPath: 'assets/'
+            // }
+          // }
+        ]
       }
     ]
   },
