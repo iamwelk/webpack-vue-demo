@@ -12,37 +12,43 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,        
-        exclude: /node_modules/,
+        test: /\.vue$/,
         use: [{
-          loader: 'babel-loader',
+          loader: 'vue-loader',
           options: {
-            presets: ['@babel/preset-env']
+            // hotReload: false
           }
         }]
       },
       {
-        test: /\.vue/,
-        use: ['vue-loader']
+        test: /\.js$/,        
+        exclude: /node_modules/,
+        use: [{
+          loader: 'babel-loader',
+          // options: {
+          //   presets: ['@babel/preset-env']
+          // }
+        }]
       },
       {
-        test: /\.scss/,
+        test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 10
+              // name: '[path][name].[ext]'
+              outputPath: 'assets/'
             }
           },
           // {
-            // loader: 'file-loader',
-            // options: {
-            //   publicPath: 'assets/'
-            // }
+          //   loader: 'url-loader',
+          //   options: {
+          //     limit: 10
+          //   }
           // }
         ]
       }
